@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:easeimageview="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/select_white_nornal_gray_press">
+        <com.hyphenate.easeui.widget.EaseImageView
+            android:id="@+id/igm_img"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:layout_margin="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_avatar"
+            easeimageview:ease_shape_type="rectangle"
+            easeimageview:ease_radius="@dimen/padding_search_bar"/>
+        <!--
+        <ImageView
+            android:id="@+id/igm_img"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:layout_margin="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_avatar"/> -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/igm_img"
+            android:layout_alignTop="@+id/igm_img"
+            android:layout_alignBottom="@+id/igm_img">
+            <TextView
+                android:id="@+id/igm_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="asdfsdf"
+                android:textSize="@dimen/f_18"
+                android:textColor="@color/text_black"/>
+            <TextView
+                android:id="@+id/igm_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="员工"
+                android:textSize="@dimen/f_12"
+                android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/allDivider"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/igm_img"/>
+    </RelativeLayout>
+</LinearLayout>

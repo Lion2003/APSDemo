@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:hyphenate="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_bg">
+
+    <com.hyphenate.easeui.widget.EaseTitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        hyphenate:titleBarTitle="工作台" />
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/efw_swipe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <!--
+    <ScrollView
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.yiaosi.aps.widget.MyGridView
+                android:id="@+id/myGridView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:verticalSpacing="@dimen/field_margin_right"
+                android:numColumns="4"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/size_avatar"
+                    android:layout_weight="1"
+                    android:background="@color/btn_login_normal"
+                    android:textColor="@color/btn_white_normal"
+                    android:text="报表查看"/>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/size_avatar"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/btn_login_normal"
+                    android:textColor="@color/btn_white_normal"
+                    android:text="外协管理"/>
+            </LinearLayout>
+            <Button
+                android:id="@+id/efw_remindNotice"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/shape_oval"
+                android:text="提醒通知"
+                android:textColor="@color/btn_white_normal"
+                android:textSize="@dimen/call_button_padding_left"/>
+
+        </LinearLayout>
+    </ScrollView>
+    -->
+</LinearLayout>

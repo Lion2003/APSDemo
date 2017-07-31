@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/irn2_relativeLayout"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/select_white_nornal_gray_press">
+    <TextView
+        android:id="@+id/irn2_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="生产计划提醒"
+        android:layout_gravity="center_vertical"
+        android:textColor="@color/tv_black6"
+        android:textSize="@dimen/f_15"
+        android:layout_margin="@dimen/f_12"/>
+    <TextView
+        android:id="@+id/irn2_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/irn_arrow"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/mp_15"
+        android:text="19"
+        android:textSize="@dimen/f_13"
+        android:textColor="@color/color_f36c60"/>
+    <ImageView
+        android:id="@+id/irn_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/em_ic_right_arrow"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/mp_10"/>
+</RelativeLayout>

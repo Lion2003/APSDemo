@@ -1,0 +1,177 @@
+package com.yiaosi.aps.ui;
+
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
+
+import com.hyphenate.chatuidemo.ui.BaseActivity;
+import com.yiaosi.aps.R;
+import com.yiaosi.aps.widget.EditItem;
+import com.yiaosi.aps.widget.timepickerdlg.TimePickerDialog;
+import com.yiaosi.aps.widget.timepickerdlg.data.Type;
+import com.yiaosi.aps.widget.timepickerdlg.listener.OnDateSetListener;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * 超量审核查询界面
+ * Created by Administrator on 2017-06-07.
+ */
+
+public class OverAuditingSearchActivity extends BaseActivity  {
+    private EditItem tvBeginDate, tvEndDate;
+    private EditItem edNum;
+    private Button btnSearch;
+
+    private ListView popListView;
+    private List<Map<String, String>> statusData1;
+    private PopupWindow popMenu;
+    private SimpleAdapter menuAdapter1;
+    private LinearLayout product;
+    private TextView tvStatus;
+
+    @Override
+    protected void onCreate(Bundle arg0) {
+        super.onCreate(arg0);
+        setContentView(R.layout.activity_over_audit_search);
+        initTitleBar();
+
+        initView();
+        initListener();
+
+    }
+
+
+    private void initMenuData() {
+        statusData1 = new ArrayList<Map<String, String>>();
+        String[] menuStr1 = new String[] { "全部", "未审核", "已审核"};
+        Map<String, String> map1;
+        for (int i = 0, len = menuStr1.length; i < len; ++i) {
+            map1 = new HashMap<String, String>();
+            map1.put("name", menuStr1[i]);
+            statusData1.add(map1);
+        }
+    }
+
+    private void initPopMenu() {
+        initMenuData();
+        View contentView = View.inflate(this, R.layout.popwin_supplier_list,
+                null);
+        popMenu = new PopupWindow(contentView,
+                tvStatus.getWidth() + 70, LinearLayout.LayoutParams.WRAP_CONTENT);
+        popMenu.setOutsideTouchable(true);
+        popMenu.setBackgroundDrawable(new BitmapDrawable());
+        popMenu.setFocusable(true);
+        popMenu.setAnimationStyle(R.style.popwin_anim_style);
+        popMenu.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            public void onDismiss() {
+                tvStatus.setTextColor(Color.parseColor("#5a5959"));
+            }
+        });
+
+        popListView = (ListView) contentView.findViewById(R.id.popwin_supplier_list_lv);
+        contentView.findViewById(R.id.popwin_supplier_list_bottom)
+                .setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View arg0) {
+                        popMenu.dismiss();
+                    }
+                });
+        menuAdapter1 = new SimpleAdapter(this, statusData1,
+                R.layout.item_listview_popwin, new String[] { "name" },
+                new int[] { R.id.listview_popwind_tv });
+
+        popListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int pos,
+                                    long arg3) {
+                popMenu.dismiss();
+                String name = statusData1.get(pos).get("name");
+                tvStatus.setText(name);
+            }
+        });
+    }
+
+    private void initView() {
+        tvBeginDate = (EditItem) findViewById(R.id.aoas_beginDate);
+        tvEndDate = (EditItem) findViewById(R.id.aoas_endDate);
+        edNum = (EditItem) findViewById(R.id.aoas_num);
+        btnSearch = (Button) findViewById(R.id.btn_search);
+
+        product = (LinearLayout) findViewById(R.id.supplier_list_activity);
+        tvStatus = (TextView) findViewById(R.id.supplier_list_activity_tv);
+    }
+
+    private void initListener(){
+        titleBar.setLeftLayoutClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        tvBeginDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setData(tvBeginDate);
+            }
+        });
+
+        tvEndDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setData(tvEndDate);
+            }
+        });
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(OverAuditingSearchActivity.this, OverAuditingListActivity.class);
+                startActivity(it);
+            }
+        });
+
+        product.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initPopMenu();
+
+                tvStatus.setTextColor(Color.parseColor("#39ac69"));
+                popListView.setAdapter(menuAdapter1);
+                popMenu.showAsDropDown(product, 0, 2);
+            }
+        });
+    }
+
+    /**
+     * 设置时间
+     * @param tv
+     */
+    private void setData(final EditItem tv) {
+        TimePickerDialog mDialogYearMonthDay = new TimePickerDialog.Builder()
+                .setType(Type.YEAR_MONTH_DAY)
+                .setCallBack(new OnDateSetListener() {
+                    @Override
+                    public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
+                        SimpleDateFormat sf = new SimpleDateFormat("yyyy年MM月dd日");
+                        Date d = new Date(millseconds);
+                        String date = sf.format(d);
+                        tv.setValue(date);
+                    }
+                })
+                .build();
+        mDialogYearMonthDay.show(getSupportFragmentManager(), "year_month_day");
+    }
+
+}

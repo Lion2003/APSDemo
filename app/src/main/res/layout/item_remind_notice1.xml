@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorPrimary">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_bell"
+        android:layout_margin="@dimen/f_12"/>
+    <TextView
+        android:id="@+id/irn1_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="生产计划提醒"
+        android:layout_gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textSize="@dimen/f_18"/>
+</LinearLayout>

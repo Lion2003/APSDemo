@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/ewi_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mp_33"
+        android:background="@color/color_f3f4f6"
+        android:text="今日紧急未处理单"
+        android:textColor="@color/color_808080"
+        android:paddingLeft="@dimen/f_15"
+        android:gravity="center_vertical"/>
+</LinearLayout>

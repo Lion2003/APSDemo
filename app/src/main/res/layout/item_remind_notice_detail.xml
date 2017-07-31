@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/irnd_LinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <View
+        android:id="@+id/irnd_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mp_10"
+        android:background="@color/line_color"/>
+    <TextView
+        android:id="@+id/irnd_tvClientName"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/mp_40"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:text="客户名称：路易雪莱"
+        style="@style/text_13sp_color_4d4d4d"
+        android:layout_marginTop="0dp"
+        android:paddingLeft="@dimen/f_15"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line_color"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <ImageView
+            android:id="@+id/irnd_pic"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:layout_margin="@dimen/mp_15"
+            android:src="@drawable/logo"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/irnd_productOrderNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="生产单号 143013-035"
+                        style="@style/text_13sp_color_4d4d4d"
+                        android:layout_marginTop="0dp"/>
+                    <TextView
+                        android:id="@+id/irnd_clientStyleNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="客户款号 CBKJ008"
+                        style="@style/text_13sp_color_4d4d4d"/>
+                    <TextView
+                        android:id="@+id/irnd_clientDeliveryTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="客户交期 2017-01-05"
+                        style="@style/text_13sp_color_4d4d4d"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/mp_10"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/irnd_productCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="生产单数 700"
+                        style="@style/text_13sp_color_4d4d4d"
+                        android:layout_marginTop="0dp"/>
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/irnd_acutralProcess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="实际进度 68%"
+                style="@style/text_13sp_color_4d4d4d"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line_color"/>
+</LinearLayout>

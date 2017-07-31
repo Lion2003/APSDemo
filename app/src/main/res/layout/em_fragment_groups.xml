@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_bg"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_top_bar"
+        android:background="@color/toolbar_color"
+        android:gravity="center_vertical" >
+
+        <include layout="@layout/ease_commom_back_btn" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="通讯录"
+            android:textColor="@color/bottom_text_color_normal"
+            android:textSize="@dimen/f_18" />
+		<ImageView
+			android:id="@+id/efg_imgSearch"
+			android:layout_width="45dp"
+			android:layout_height="45dp"
+			android:background="@drawable/ease_common_tab_bg"
+			android:clickable="true"
+			android:src="@drawable/icon_search"
+			android:layout_centerVertical="true"
+			android:scaleType="center"
+			android:layout_toLeftOf="@+id/efg_imgAddContact"
+			android:layout_marginRight="@dimen/mp_5"/>
+		<ImageView
+			android:id="@+id/efg_imgAddContact"
+			android:layout_width="33dp"
+			android:layout_height="33dp"
+			android:background="@drawable/ease_common_tab_bg"
+			android:clickable="true"
+			android:scaleType="center"
+			android:src="@drawable/icon_add_contact"
+			android:layout_alignParentRight="true"
+			android:layout_centerVertical="true"
+			android:layout_marginRight="@dimen/mp_10"/>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        
+         <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_layout"
+            android:layout_height="match_parent" 
+            android:layout_width="match_parent">
+             
+		    <ListView
+		        android:id="@+id/list"
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:background="@android:color/transparent"
+		        android:cacheColorHint="#00000000"
+		        android:descendantFocusability="afterDescendants"
+		        android:divider="@android:color/transparent"
+		        android:dividerHeight="0dp"
+		        android:fastScrollAlwaysVisible="false"
+		        android:fastScrollEnabled="false" />
+		 </android.support.v4.widget.SwipeRefreshLayout>
+		 
+    </FrameLayout>
+
+</LinearLayout>
