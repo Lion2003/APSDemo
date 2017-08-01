@@ -128,6 +128,7 @@ public class WorkbenchFragment extends EaseBaseFragment {
 //        }
 //        return list;
 
+        //测试数据
         List<WorkbenchItem> list = new ArrayList<WorkbenchItem>();
         WorkbenchItem item1 = new WorkbenchItem();
         item1.setColor("蓝色");
