@@ -1,15 +1,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:easeimageview="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/splash_root"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="?attr/colorPrimary" >
+    <com.hyphenate.easeui.widget.EaseImageView
+        android:id="@+id/eas_imgLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/logo"
+        android:layout_centerInParent="true"
+        easeimageview:ease_shape_type="rectangle"
+        easeimageview:ease_radius="@dimen/padding_search_bar"/>
+    <!--
     <ImageView
         android:id="@+id/eas_imgLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/logo"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"/> -->
     <!--
     <ImageView
         android:id="@+id/iv_splash_logo"

@@ -207,12 +207,12 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
 
-        <!-- 语音通话 -->
+        <!-- 语音通话  android:theme="@style/nornal_style" -->
         <activity
             android:name="com.hyphenate.chatuidemo.ui.VoiceCallActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/nornal_style" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <!-- 视频通话 -->
         <activity
             android:name="com.hyphenate.chatuidemo.ui.VideoCallActivity"
@@ -547,7 +547,7 @@
             android:name="com.umeng.update.UpdateDialogActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
-        <!-- 设置环信应用的appkey -->
+        <!-- 设置环信应用的appkey            easemob-demo#chatdemoui       chat-demo#apsdemo -->
         <meta-data
             android:name="EASEMOB_APPKEY"
             android:value="easemob-demo#chatdemoui" />

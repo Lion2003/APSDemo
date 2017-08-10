@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chatuidemo.DemoHelper;
+import com.hyphenate.easeui.widget.EaseImageView;
 import com.yiaosi.aps.R;
 import com.hyphenate.util.EasyUtils;
 
@@ -24,7 +25,7 @@ public class SplashActivity extends BaseActivity {
 
 	private static final int sleepTime = 2000;
 
-	private ImageView imgLogo;
+	private EaseImageView imgLogo;
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -35,7 +36,7 @@ public class SplashActivity extends BaseActivity {
 		setContentView(R.layout.em_activity_splash);
 		super.onCreate(arg0);
 
-		imgLogo = (ImageView) findViewById(R.id.eas_imgLogo);
+		imgLogo = (EaseImageView) findViewById(R.id.eas_imgLogo);
 
 		RelativeLayout rootLayout = (RelativeLayout) findViewById(R.id.splash_root);
 		TextView versionText = (TextView) findViewById(R.id.tv_version);
