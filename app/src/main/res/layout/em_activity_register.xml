@@ -27,7 +27,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="54dp"
+            android:layout_height="49dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/em_button_normal_shape" >
@@ -51,12 +51,12 @@
                 android:hint="@string/user_name"
                 android:paddingLeft="10dip"
                 android:singleLine="true"
-                android:textSize="18sp" />
+                android:textSize="@dimen/f_14" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="54dp"
+            android:layout_height="49dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
@@ -82,12 +82,12 @@
                 android:inputType="textPassword"
                 android:paddingLeft="10dip"
                 android:singleLine="true"
-                android:textSize="18sp" />
+                android:textSize="@dimen/f_14" />
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="54dp"
+            android:layout_height="49dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
@@ -113,30 +113,28 @@
                 android:inputType="textPassword"
                 android:paddingLeft="10dip"
                 android:singleLine="true"
-                android:textSize="18sp" />
+                android:textSize="@dimen/f_14" />
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
             android:orientation="horizontal" >
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/em_button_login_bg"
                 android:onClick="register"
-                android:paddingBottom="7dp"
-                android:paddingTop="7dp"
+                android:paddingBottom="6dp"
+                android:paddingTop="6dp"
                 android:text="@string/register"
                 android:textColor="@android:color/white"
-                android:textSize="20sp" />
+                android:textSize="@dimen/f_16" />
         </LinearLayout>
     </LinearLayout>
 
