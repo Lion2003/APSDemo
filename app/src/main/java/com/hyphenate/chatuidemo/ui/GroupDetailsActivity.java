@@ -97,6 +97,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 
 	GroupChangeListener groupChangeListener;
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -122,7 +123,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		RelativeLayout changeGroupDescriptionLayout = (RelativeLayout) findViewById(R.id.rl_change_group_description);
 		RelativeLayout changeGroupExtension = (RelativeLayout) findViewById(R.id.rl_change_group_extension);
 		RelativeLayout idLayout = (RelativeLayout) findViewById(R.id.rl_group_id);
-		idLayout.setVisibility(View.VISIBLE);
+//		idLayout.setVisibility(View.VISIBLE);
 		TextView idText = (TextView) findViewById(R.id.tv_group_id_value);
 
 		RelativeLayout rl_switch_block_groupmsg = (RelativeLayout) findViewById(R.id.rl_switch_block_groupmsg);
@@ -156,6 +157,8 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		EMClient.getInstance().groupManager().addGroupChangeListener(groupChangeListener);
 		
 		((TextView) findViewById(R.id.group_name)).setText(group.getGroupName() + "(" + group.getMemberCount() + st);
+		((TextView) findViewById(R.id.tvGroupName)).setText(group.getGroupName());
+		((TextView) findViewById(R.id.eagd_number)).setText(group.getMemberCount() + "人");
 
 		membersAdapter = new GridAdapter(this, R.layout.em_grid_owner, new ArrayList<String>());
 		EaseExpandGridView userGridview = (EaseExpandGridView) findViewById(R.id.gridview);
@@ -301,6 +304,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 								runOnUiThread(new Runnable() {
 									public void run() {
 										((TextView) findViewById(R.id.group_name)).setText(group.getGroupName() + "(" + group.getMemberCount() + ")");
+										((TextView) findViewById(R.id.tvGroupName)).setText(group.getGroupName());
 										progressDialog.dismiss();
 										Toast.makeText(getApplicationContext(), st6, Toast.LENGTH_SHORT).show();
 									}
@@ -418,6 +422,14 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 				membersAdapter = new GridAdapter(GroupDetailsActivity.this, R.layout.em_grid_owner, new ArrayList<String>());
 
 				membersAdapter.clear();
+
+				//===========================================自己加上去的代码，为的是在成员列表中加入群主的信息===========================================
+				membersAdapter.add(group.getOwner());
+				synchronized (adminList) {
+					membersAdapter.addAll(adminList);
+				}
+				//======================================================================================================================
+
 				synchronized (memberList) {
 					membersAdapter.addAll(memberList);
 				}

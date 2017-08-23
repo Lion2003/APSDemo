@@ -77,6 +77,10 @@ public class EaseTitleBar extends RelativeLayout{
     public void setLeftImageResource(int resId) {
         leftImage.setImageResource(resId);
     }
+
+    public ImageView getLeftImage() {
+        return leftImage;
+    }
     
     public void setRightImageResource(int resId) {
         rightImage.setImageResource(resId);

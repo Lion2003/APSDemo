@@ -1,5 +1,9 @@
 package com.yiaosi.aps.ui;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,11 +16,15 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.hyphenate.EMConnectionListener;
 import com.hyphenate.EMError;
 import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.chatuidemo.DemoHelper;
+import com.hyphenate.chatuidemo.db.InviteMessgeDao;
+import com.hyphenate.chatuidemo.db.UserDao;
 import com.hyphenate.chatuidemo.ui.BaseActivity;
 import com.hyphenate.chatuidemo.ui.ChatActivity;
 import com.hyphenate.easeui.domain.EaseUser;
@@ -36,7 +44,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.hyphenate.easeui.widget.EaseTitleBar;
+
 /**
+ * 通讯录。自己新建的类，跟环信的demo相比，这个类改动有点大
  * Created by Administrator on 2017-06-15.
  */
 
@@ -70,6 +81,14 @@ public class ContactListActivity1 extends BaseActivity {
         clearSearch = (ImageButton) findViewById(com.hyphenate.easeui.R.id.search_clear);
 
         asyncFetchContactsFromServer(null);
+
+        EaseTitleBar bar = (EaseTitleBar)findViewById(R.id.title_bar);
+        bar.getLeftImage().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
 
@@ -252,6 +271,36 @@ public class ContactListActivity1 extends BaseActivity {
                         }
                     });
 
+                    listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                        @Override
+                        public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                            Dialog dialog = new AlertDialog.Builder(ContactListActivity1.this)
+                                    .setTitle("提示")
+                                    .setMessage("是否删除联系人")
+                                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            try {
+                                                toBeProcessUser = (EaseUser) listView.getItemAtPosition(position);
+                                                toBeProcessUsername = toBeProcessUser.getUsername();
+
+                                                // delete contact
+                                                deleteContact(toBeProcessUser);
+                                                // remove invitation message
+                                                InviteMessgeDao dao = new InviteMessgeDao(ContactListActivity1.this);
+                                                dao.deleteMessage(toBeProcessUser.getUsername());
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    })
+                                    .setNegativeButton("取消", null)
+                                    .create();
+                            dialog.show();
+                            return true;
+                        }
+                    });
+
                     query.addTextChangedListener(new TextWatcher() {
                         public void onTextChanged(CharSequence s, int start, int before, int count) {
                             contactListLayout.filter(s);
@@ -292,4 +341,48 @@ public class ContactListActivity1 extends BaseActivity {
             }
         }.start();
     }
+
+    /**
+     * delete contact
+     *
+     * @param tobeDeleteUser
+     */
+    public void deleteContact(final EaseUser tobeDeleteUser) {
+        String st1 = getResources().getString(R.string.deleting);
+        final String st2 = getResources().getString(R.string.Delete_failed);
+        final ProgressDialog pd = new ProgressDialog(ContactListActivity1.this);
+        pd.setMessage(st1);
+        pd.setCanceledOnTouchOutside(false);
+        pd.show();
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    EMClient.getInstance().contactManager().deleteContact(tobeDeleteUser.getUsername());
+                    // remove user from memory and database
+                    UserDao dao = new UserDao(ContactListActivity1.this);
+                    dao.deleteContact(tobeDeleteUser.getUsername());
+                    DemoHelper.getInstance().getContactList().remove(tobeDeleteUser.getUsername());
+                    ContactListActivity1.this.runOnUiThread(new Runnable() {
+                        public void run() {
+                            pd.dismiss();
+                            contactList.remove(tobeDeleteUser);
+                            contactListLayout.refresh();
+
+                        }
+                    });
+                } catch (final Exception e) {
+                    ContactListActivity1.this.runOnUiThread(new Runnable() {
+                        public void run() {
+                            pd.dismiss();
+                            Toast.makeText(ContactListActivity1.this, st2 + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }
+
+            }
+        }).start();
+
+    }
+
 }

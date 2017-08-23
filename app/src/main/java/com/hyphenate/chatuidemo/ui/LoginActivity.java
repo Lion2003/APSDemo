@@ -157,7 +157,7 @@ public class LoginActivity extends BaseActivity {
 	private void checkButLoginUse() {
 		if(StringUtil.isEmpty(usernameEditText.getText().toString()) || StringUtil.isEmpty(passwordEditText.getText().toString())){
 			btnLogin.setEnabled(false);
-			btnLogin.setBackgroundResource(R.drawable.shape_solid_cccccc_corners_3dp);
+			btnLogin.setBackgroundResource(R.drawable.shape_solid_f3f4f6_corners_3dp);
 		} else {
 			btnLogin.setEnabled(true);
 			btnLogin.setBackgroundResource(R.drawable.em_button_login_bg);

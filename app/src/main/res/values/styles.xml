@@ -73,7 +73,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-
+    <!-- CustomCheckBox theme -->
+    <style name="CustomCheckBoxTheme1" parent="@android:style/Widget.CompoundButton.CheckBox">
+       <item name="android:button">@drawable/em_checkbox_bg_color_selector</item>
+    </style>
 
 
 

@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_top_bar"
-       android:background="@color/top_bar_normal_bg"
+       android:background="@color/status_bar_color"
         android:gravity="center_vertical" >
 
          <LinearLayout
@@ -34,6 +34,7 @@
             android:textColor="#ffffff"
             android:textSize="20sp" />
 
+        <!--
         <Button
             android:layout_width="60dp"
             android:layout_height="wrap_content"
@@ -43,7 +44,7 @@
             android:onClick="save"
             android:text="@string/button_save"
             android:textColor="#fff"
-            android:textSize="18sp" />
+            android:textSize="18sp" /> -->
     </RelativeLayout>
 
     <RelativeLayout
@@ -54,18 +55,57 @@
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@+id/eagpc_relativeLayout"
             android:cacheColorHint="#00000000"
             android:background="@android:color/transparent"
             android:divider="#D4D4D4"
             android:descendantFocusability="afterDescendants"
             android:dividerHeight="1px"
             android:fastScrollEnabled="true" />
+        <RelativeLayout
+            android:id="@+id/eagpc_relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5px"
+                android:background="@color/nomalGray"/>
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/eagpc_btn"
+                android:layout_centerVertical="true">
+                <LinearLayout
+                    android:id="@+id/eagpc_linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical">
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            <Button
+                android:id="@+id/eagpc_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="确定"
+                android:onClick="save"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@drawable/em_button_login_bg"/>
+        </RelativeLayout>
 
         <com.hyphenate.easeui.widget.EaseSidebar
             android:id="@+id/sidebar"
             android:layout_width="25dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/mp_30"
+            android:layout_marginBottom="@dimen/mp_30"
             android:background="@android:color/transparent"
             android:clickable="true" />
 

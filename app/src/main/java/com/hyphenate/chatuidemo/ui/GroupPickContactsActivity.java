@@ -18,15 +18,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -36,6 +39,7 @@ import com.hyphenate.chat.EMGroup;
 import com.hyphenate.chatuidemo.Constant;
 import com.hyphenate.chatuidemo.DemoHelper;
 import com.hyphenate.easeui.utils.EaseUserUtils;
+import com.hyphenate.easeui.widget.EaseImageView;
 import com.hyphenate.exceptions.HyphenateException;
 import com.yiaosi.aps.R;
 import com.hyphenate.easeui.adapter.EaseContactAdapter;
@@ -58,10 +62,15 @@ public class GroupPickContactsActivity extends BaseActivity {
 	/** members already in the group */
 	private List<String> existMembers;
 
+	private LinearLayout linearLayout;
+	private Button btn;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.em_activity_group_pick_contacts);
+		linearLayout = (LinearLayout) findViewById(R.id.eagpc_linearLayout);
+		btn = (Button) findViewById(R.id.eagpc_btn);
 
 		String groupId = getIntent().getStringExtra("groupId");
 		if (groupId == null) {// create new group
@@ -139,9 +148,9 @@ public class GroupPickContactsActivity extends BaseActivity {
 			
 			if (checkBox != null) {
 			    if(existMembers != null && existMembers.contains(username)){
-                    checkBox.setButtonDrawable(R.drawable.em_checkbox_bg_gray_selector);
+                    checkBox.setButtonDrawable(R.drawable.em_checkbox_bg_gray_selector1);
                 }else{
-                    checkBox.setButtonDrawable(R.drawable.em_checkbox_bg_selector);
+                    checkBox.setButtonDrawable(R.drawable.em_checkbox_bg_color_selector);
                 }
 
 				checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -153,7 +162,7 @@ public class GroupPickContactsActivity extends BaseActivity {
 								checkBox.setChecked(true);
 						}
 						isCheckedArray[position] = isChecked;
-
+						getToAddMembers();
 					}
 				});
 				// keep exist members checked
@@ -168,6 +177,34 @@ public class GroupPickContactsActivity extends BaseActivity {
 			return view;
 		}
 	}
+
+
+
+	/**
+	 * 自己新建的方法，用于新需求展示UI底部所选的联系人头像。======================================================================================
+	 *
+	 * @return
+	 */
+	private List<String> getToAddMembers() {
+		List<String> members = new ArrayList<String>();
+		int length = contactAdapter.isCheckedArray.length;
+		for (int i = 0; i < length; i++) {
+			String username = contactAdapter.getItem(i).getUsername();
+			if (contactAdapter.isCheckedArray[i] && !existMembers.contains(username)) {
+				members.add(username);
+			}
+		}
+		linearLayout.removeAllViews();
+		for(int i = 0; i < members.size(); i++) {
+			View view = LayoutInflater.from(this).inflate(R.layout.item_img, null);
+			EaseImageView imgLogo = (EaseImageView) view.findViewById(R.id.ii_avatar);
+			linearLayout.addView(view);
+		}
+		btn.setText("确定(" + members.size() + "人)");
+		return members;
+	}
+
+
 
 	public void back(View view){
 		finish();
