@@ -26,7 +26,7 @@ import com.yiaosi.aps.widget.EditItem;
 
 public class MineFragment extends EaseBaseFragment implements View.OnClickListener {
     private View view;
-    private EditItem newMsg, checkUpdate, feedBack, helpCenter;
+    private EditItem personInfo, newMsg, checkUpdate, feedBack, helpCenter;
     private Button logoutBtn;
 
     @Override
@@ -37,6 +37,7 @@ public class MineFragment extends EaseBaseFragment implements View.OnClickListen
 
     @Override
     protected void initView() {
+        personInfo = (EditItem) view.findViewById(R.id.efm_personalInfo);
         newMsg = (EditItem) view.findViewById(R.id.efm_new_msg);
         checkUpdate = (EditItem) view.findViewById(R.id.efm_check_update);
         feedBack = (EditItem) view.findViewById(R.id.efm_feedback);
@@ -47,6 +48,7 @@ public class MineFragment extends EaseBaseFragment implements View.OnClickListen
             logoutBtn.setText(getString(R.string.button_logout) + "(" + EMClient.getInstance().getCurrentUser() + ")");
         }
 
+        personInfo.setOnClickListener(this);
         newMsg.setOnClickListener(this);
         checkUpdate.setOnClickListener(this);
         feedBack.setOnClickListener(this);
@@ -62,6 +64,11 @@ public class MineFragment extends EaseBaseFragment implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.efm_personalInfo:
+                Intent it = new Intent(getActivity(), UserProfileActivity.class);
+                it.putExtra("isChat", false);
+                startActivity(it);
+                break;
             case R.id.btn_logout:
                 logout();
                 break;

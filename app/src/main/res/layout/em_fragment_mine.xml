@@ -27,10 +27,10 @@
                 android:background="#ddd"
                 android:layout_marginTop="20dp"/>
             <com.yiaosi.aps.widget.EditItem
-                android:id="@+id/efm_new_msg"
+                android:id="@+id/efm_personalInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                myitem:title="新消息通知"
+                myitem:title="个人信息"
                 myitem:arrmode="visible"
                 myitem:valueColor="@color/gray_888888"
                 myitem:linemode="none"/>
@@ -44,6 +44,13 @@
                 android:layout_height="1px"
                 android:background="#ddd"
                 android:layout_marginTop="20dp"/>
+            <com.yiaosi.aps.widget.EditItem
+                android:id="@+id/efm_new_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                myitem:title="新消息通知"
+                myitem:arrmode="visible"
+                myitem:valueColor="@color/gray_888888"/>
             <com.yiaosi.aps.widget.EditItem
                 android:id="@+id/efm_check_update"
                 android:layout_width="match_parent"
@@ -81,7 +88,7 @@
                 android:background="@drawable/em_button_login_bg"
                 android:text="@string/button_logout"
                 android:textColor="@android:color/white"
-                android:textSize="18sp" /> <!--android:background="@drawable/em_btn_style_alert_dialog_special"-->
+                android:textSize="18sp" /> <!--android:background="@drawable/em_btn_style_alert_dialog_special"  android:background="@drawable/em_button_login_bg"-->
             <!--
             <com.hyphenate.easeui.widget.EaseImageView
                 android:id="@+id/avatar"
