@@ -1,5 +1,6 @@
 package com.yiaosi.aps.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import com.hyphenate.chatuidemo.ui.BaseActivity;
 import com.yiaosi.aps.R;
+import com.yiaosi.aps.utils.StringUtil;
 import com.yiaosi.aps.widget.EditItem;
 import com.yiaosi.aps.widget.timepickerdlg.TimePickerDialog;
 import com.yiaosi.aps.widget.timepickerdlg.data.Type;
@@ -69,10 +71,10 @@ public class MacroPlanActivity extends BaseActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.amp_gcjq:
-                        Toast.makeText(MacroPlanActivity.this, "工厂交期", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MacroPlanActivity.this, "工厂交期", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.amp_jhq:
-                        Toast.makeText(MacroPlanActivity.this, "交货期", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MacroPlanActivity.this, "交货期", Toast.LENGTH_SHORT).show();
                         break;
                     default:
 
@@ -83,7 +85,15 @@ public class MacroPlanActivity extends BaseActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(StringUtil.isEmpty(tvBeginDate.getValue())) {
+                    Toast.makeText(MacroPlanActivity.this, "请选择开始日期", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if(StringUtil.isEmpty(tvEndDate.getValue())) {
+                    Toast.makeText(MacroPlanActivity.this, "请选择结束日期", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Intent it = new Intent(MacroPlanActivity.this, MacroPlanListActivity.class);
+                startActivity(it);
             }
         });
     }

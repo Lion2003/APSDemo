@@ -1500,7 +1500,7 @@ public class DemoHelper {
 //        isBlackListSyncedWithServer = false;
 //
 //        isGroupAndContactListenerRegisted = false;
-
+//
 //        setContactList(null);
 //        setRobotList(null);
 //        getUserProfileManager().reset();

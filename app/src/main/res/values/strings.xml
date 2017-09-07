@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name1">Demo</string>
-    <string name="action_settings1">Settings</string>
+    <!--
+    <string name="app_name1">例子</string>
+    <string name="action_settings1">设置</string>
 
     <string name="picker_sure">确定</string>
     <string name="picker_cancel">取消</string>
@@ -22,5 +23,5 @@
     <string name="input_style_num">输入款号：</string>
     <string name="input_date">请选择日期：</string>
 
-    <string name="integrallimit_buy_num">实际进度 %1$s    落后进度 &#060;span&#062;&#060;font color=\"#fc125e\"&#062;%2$s</string>
+    <string name="integrallimit_buy_num">实际进度 %1$s    落后进度 &#060;span&#062;&#060;font color=\"#fc125e\"&#062;%2$s</string> -->
 </resources>

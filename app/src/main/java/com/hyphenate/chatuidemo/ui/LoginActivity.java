@@ -215,11 +215,11 @@ public class LoginActivity extends BaseActivity {
 			@Override
 			public void onSuccess() {
 				Log.d(TAG, "login: onSuccess");
-				String[] images = {"http://images.csdn.net/20170614/VCG2182f1c4a6b.jpg", "http://img5.duitang.com/uploads/item/201508/30/20150830132007_TjANX.thumb.224_0.jpeg",
-						"http://images.csdn.net/20170421/1101.jpg","http://avatar.csdn.net/B/4/B/1_happydeer.jpg",
-						"http://avatar.csdn.net/F/D/6/1_u013970991.jpg","http://avatar.csdn.net/6/B/C/1_briblue.jpg",
-						"http://avatar.csdn.net/B/A/B/1_dog250.jpg","http://avatar.csdn.net/5/4/5/1_u013709270.jpg",
-						"http://images.csdn.net/20170613/1_meitu_1.jpg","http://images.csdn.net/20170613/VCG41453507891.jpg",};
+				String[] images = {"http://images.csdn.net/20170614/VCG2182f1c4a6b.jpg", "http://images.csdn.net/20170614/VCG2182f1c4a6b.jpg",
+						"http://images.csdn.net/20170614/VCG2182f1c4a6b.jpg","http://images.csdn.net/20170614/VCG2182f1c4a6b.jpg",
+						"http://images.csdn.net/20170614/VCG2182f1c4a6b.jpg","http://images.csdn.net/20170614/VCG2182f1c4a6b.jpg",
+						"http://images.csdn.net/20170614/VCG2182f1c4a6b.jpg","http://images.csdn.net/20170614/VCG2182f1c4a6b.jpg",
+						"http://images.csdn.net/20170614/VCG2182f1c4a6b.jpg","http://images.csdn.net/20170614/VCG2182f1c4a6b.jpg",};
 				String[] names = {"张一", "张二","张三","张四","张五","张六","张七","张八","张九","张十"};
 				List<Map<String, String>> lists = new ArrayList<Map<String, String>>();
                 for(int i = 0; i < 10; i++) {

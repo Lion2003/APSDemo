@@ -381,4 +381,33 @@
     <string name="Failed_to_create_chat_room">创建聊天室失败</string>
 
     <string name="mail_log_title">发送邮件附件中包含log</string>
+
+
+
+
+
+    <string name="app_name1">例子</string>
+    <string name="action_settings1">设置</string>
+
+    <string name="picker_sure">确定</string>
+    <string name="picker_cancel">取消</string>
+    <string name="picker_title">选择时间</string>
+
+    <string name="picker_year">年</string>
+    <string name="picker_month">月</string>
+    <string name="picker_day">日</string>
+    <string name="picker_hour">时</string>
+    <string name="picker_minute">分</string>
+
+    <string name="set_purchase_num">输入采购单号：</string>
+    <string name="order_status">单据状态：</string>
+    <string name="input_client_name">请输入客户名称</string>
+    <string name="input_dakuan">请输入大款：</string>
+    <string name="input_materiel_name">请输入物料名称</string>
+    <string name="input_color_num">请输入色号</string>
+    <string name="input_product_order">输入生产单号：</string>
+    <string name="input_style_num">输入款号：</string>
+    <string name="input_date">请选择日期：</string>
+
+    <string name="integrallimit_buy_num">实际进度 %1$s    落后进度 &#060;span&#062;&#060;font color=\"#fc125e\"&#062;%2$s</string>
 </resources>

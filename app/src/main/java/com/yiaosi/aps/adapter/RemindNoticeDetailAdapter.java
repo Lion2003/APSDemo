@@ -49,7 +49,7 @@ public class RemindNoticeDetailAdapter extends RecyclerView.Adapter<RecyclerView
         }
         ((RemindNoticeViewHolder) holder).clientName.setText("客户名称 " + list.get(position).getClientName());
 //        ((RemindNoticeViewHolder) holder).picture
-        Glide.with(context).load("http://img0.imgtn.bdimg.com/it/u=3671850754,3508119930&fm=26&gp=0.jpg")
+        Glide.with(context).load(list.get(position).getPicture())
                 .into(((RemindNoticeViewHolder) holder).picture);
         ((RemindNoticeViewHolder) holder).productionOrderNum.setText("生产单号 " + list.get(position).getProductionOrderNum());
         ((RemindNoticeViewHolder) holder).productionCount.setText("生产数量 " + list.get(position).getProductionCount());

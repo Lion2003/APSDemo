@@ -381,4 +381,33 @@
     <string name="Failed_to_create_chat_room">Failed to create chat room</string>
 
     <string name="mail_log_title">Send mail, contain logs</string>
+
+
+
+
+
+    <string name="app_name1">Demo</string>
+    <string name="action_settings1">Setting</string>
+
+    <string name="picker_sure">sure</string>
+    <string name="picker_cancel">cancel</string>
+    <string name="picker_title">title</string>
+
+    <string name="picker_year">year</string>
+    <string name="picker_month">month</string>
+    <string name="picker_day">day</string>
+    <string name="picker_hour">hour</string>
+    <string name="picker_minute">minute</string>
+
+    <string name="set_purchase_num">purchase num</string>
+    <string name="order_status">order status</string>
+    <string name="input_client_name">input client name</string>
+    <string name="input_dakuan">input dakuan</string>
+    <string name="input_materiel_name">input materiel name</string>
+    <string name="input_color_num">input color num</string>
+    <string name="input_product_order">input product order</string>
+    <string name="input_style_num">input style num</string>
+    <string name="input_date">input date</string>
+
+    <string name="integrallimit_buy_num">progress %1$s    behindProcess &#060;span&#062;&#060;font color=\"#fc125e\"&#062;%2$s</string>
 </resources>

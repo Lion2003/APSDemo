@@ -238,19 +238,76 @@ public class RemindNoticeDetailActivity extends BaseActivity {
 
     private void initData() {
         list = new ArrayList<RemindNoticeDetailEntity>();
-        RemindNoticeDetailEntity entity;
-        for (int i = 0; i < 40; i++) {
-            entity = new RemindNoticeDetailEntity();
-            entity.setClientName("英氏");
-            entity.setPicture("");
-            entity.setProductionOrderNum("143013-035");
-            entity.setProductionCount("700");
-            entity.setClientStyleNum("CBKJ008");
-            entity.setClientDeliveryTime("2017-01-05");
-            entity.setAcutralProcess("68%");
-            entity.setBackWardProcess("32%");
-            list.add(entity);
-        }
+//        RemindNoticeDetailEntity entity;
+//        for (int i = 0; i < 40; i++) {
+//            entity = new RemindNoticeDetailEntity();
+//            entity.setClientName("英氏");
+//            entity.setPicture("");
+//            entity.setProductionOrderNum("143013-035");
+//            entity.setProductionCount("700");
+//            entity.setClientStyleNum("CBKJ008");
+//            entity.setClientDeliveryTime("2017-01-05");
+//            entity.setAcutralProcess("68%");
+//            entity.setBackWardProcess("32%");
+//            list.add(entity);
+//        }
+
+
+        RemindNoticeDetailEntity entity = new RemindNoticeDetailEntity();
+        entity.setClientName("英氏");
+        entity.setPicture("http://img0.imgtn.bdimg.com/it/u=3671850754,3508119930&fm=26&gp=0.jpg");
+        entity.setProductionOrderNum("143013-035");
+        entity.setProductionCount("700");
+        entity.setClientStyleNum("CBKJ008");
+        entity.setClientDeliveryTime("2017-01-05");
+        entity.setAcutralProcess("68%");
+        entity.setBackWardProcess("32%");
+        list.add(entity);
+
+        RemindNoticeDetailEntity entity1 = new RemindNoticeDetailEntity();
+        entity1.setClientName("凯信");
+        entity1.setPicture("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505294194&di=9dda17ff2babca4789bf019a97fed4ce&imgtype=jpg&er=1&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F12%2F26%2F80%2F65U58PICmgS.jpg");
+        entity1.setProductionOrderNum("143026-036");
+        entity1.setProductionCount("1500");
+        entity1.setClientStyleNum("CBKJ009");
+        entity1.setClientDeliveryTime("2017-01-23");
+        entity1.setAcutralProcess("70%");
+        entity1.setBackWardProcess("30%");
+        list.add(entity1);
+
+        RemindNoticeDetailEntity entity2 = new RemindNoticeDetailEntity();
+        entity2.setClientName("瑞亨");
+        entity2.setPicture("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505294405&di=abd83b495d44cb6bf5ece6e42cc5bd0b&imgtype=jpg&er=1&src=http%3A%2F%2Fec4.images-amazon.com%2Fimages%2FI%2F81m85A-AhCL._UL1500_.jpg");
+        entity2.setProductionOrderNum("144028-040");
+        entity2.setProductionCount("1820");
+        entity2.setClientStyleNum("CBKJ110");
+        entity2.setClientDeliveryTime("2017-02-18");
+        entity2.setAcutralProcess("73%");
+        entity2.setBackWardProcess("27%");
+        list.add(entity2);
+
+        RemindNoticeDetailEntity entity3 = new RemindNoticeDetailEntity();
+        entity3.setClientName("衣联");
+        entity3.setPicture("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505294611&di=796ec70977692f216801eea14158ff78&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F016f02577cd4080000018c1bb073dd.jpg%40900w_1l_2o_100sh.jpg");
+        entity3.setProductionOrderNum("145032-047");
+        entity3.setProductionCount("2620");
+        entity3.setClientStyleNum("CBKK720");
+        entity3.setClientDeliveryTime("2017-03-19");
+        entity3.setAcutralProcess("75%");
+        entity3.setBackWardProcess("25%");
+        list.add(entity3);
+
+        RemindNoticeDetailEntity entity4 = new RemindNoticeDetailEntity();
+        entity4.setClientName("品好尚");
+        entity4.setPicture("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505294647&di=06ba5af856f06696a97cc2670c102e32&imgtype=jpg&er=1&src=http%3A%2F%2Fimg001.hc360.cn%2Fm3%2FM07%2F05%2F03%2FwKhQ51SaLTuEe2HHAAAAAOAIbjU899.jpg");
+        entity4.setProductionOrderNum("146011-050");
+        entity4.setProductionCount("2730");
+        entity4.setClientStyleNum("CBKK721");
+        entity4.setClientDeliveryTime("2017-04-09");
+        entity4.setAcutralProcess("77%");
+        entity4.setBackWardProcess("23%");
+        list.add(entity4);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

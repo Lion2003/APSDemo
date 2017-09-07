@@ -95,7 +95,8 @@ public class WorkbenchFragment extends EaseBaseFragment {
                         startActivity(it2);
                         break;
                     case 3:
-
+                        Intent it3 = new Intent(getActivity(), AllFunctionActivity.class);
+                        startActivity(it3);
                         break;
                     case 4:
                         Intent it4 = new Intent(getActivity(), WorkbenchDetailActivity.class);
