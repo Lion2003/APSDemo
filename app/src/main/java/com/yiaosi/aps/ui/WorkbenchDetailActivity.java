@@ -21,12 +21,15 @@ public class WorkbenchDetailActivity extends BaseActivity {
     private ImageView img;
     private RecyclerView mRecyclerView;
     private String pic;
+    private String isShow;
+
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
         setContentView(R.layout.activity_work_bench_detail);
         img = (ImageView) findViewById(R.id.imageView);
         pic = getIntent().getStringExtra("pic");
+        isShow = getIntent().getStringExtra("isShow");
         Glide.with(this).load(pic).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(img);
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -49,7 +52,7 @@ public class WorkbenchDetailActivity extends BaseActivity {
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        WorkbenchDetailAdapter adapter = new WorkbenchDetailAdapter(this);
+        WorkbenchDetailAdapter adapter = new WorkbenchDetailAdapter(this, isShow);
         mRecyclerView.setAdapter(adapter);
     }
 }

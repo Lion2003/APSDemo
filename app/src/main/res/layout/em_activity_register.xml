@@ -22,7 +22,7 @@
         android:layout_height="0dip"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_weight="1.5"
+        android:layout_weight="2.5"
         android:orientation="vertical" >
 
         <RelativeLayout
@@ -115,7 +115,36 @@
                 android:singleLine="true"
                 android:textSize="@dimen/f_14" />
         </RelativeLayout>
-
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp">
+            <EditText
+                android:id="@+id/ed_VerifiCode"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/btn_CountDown"
+                android:background="@drawable/em_button_normal_shape"
+                android:hint="@string/verificationCode"
+                android:inputType="textPassword"
+                android:paddingLeft="10dip"
+                android:singleLine="true"
+                android:textSize="@dimen/f_14" />
+            <Button
+                android:id="@+id/btn_CountDown"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/mp_40"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dip"
+                android:background="@drawable/em_button_login_bg"
+                android:text="验证码"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/f_16"/>
+        </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

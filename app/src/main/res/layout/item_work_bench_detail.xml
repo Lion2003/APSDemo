@@ -228,7 +228,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-
+            android:id="@+id/tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="处理结果      未处理"
@@ -252,4 +252,30 @@
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="@color/line_color"/>
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/iwbd_delayReason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="延误原因"
+            style="@style/text_13sp_color_4d4d4d"
+            android:gravity="center"
+            android:paddingTop="@dimen/mp_10"
+            android:drawablePadding="@dimen/mp_5"
+            android:layout_marginLeft="@dimen/mp_12"/>
+        <EditText
+            android:id="@+id/ed"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="@dimen/mp_10"
+            android:layout_toRightOf="@+id/iwbd_delayReason"
+            android:gravity="left"
+            android:hint="请输入延误原因"
+            style="@style/text_13sp_color_4d4d4d"
+            android:background="@null"
+            android:paddingTop="@dimen/mp_10"/>
+    </RelativeLayout>
 </LinearLayout>

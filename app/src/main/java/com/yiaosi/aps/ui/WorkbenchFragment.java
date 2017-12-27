@@ -1,113 +1,170 @@
 package com.yiaosi.aps.ui;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebView;
 import android.widget.Toast;
 
+import com.hyphenate.chatuidemo.utils.SharedPreferencesUtil;
 import com.hyphenate.easeui.ui.EaseBaseFragment;
 import com.yiaosi.aps.R;
-import com.yiaosi.aps.adapter.RemindNoticeAdapter;
-import com.yiaosi.aps.adapter.WorkbenchItemAdapter;
 import com.yiaosi.aps.entity.WorkbenchItem;
-import com.yiaosi.aps.widget.SpaceItemDecoration;
+import com.yiaosi.aps.widget.LoadingWebView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter;
+import android.webkit.WebSettings;
+import android.webkit.WebViewClient;
 
 /**
  * Created by Administrator on 2017-06-02.
  */
 public class WorkbenchFragment extends EaseBaseFragment {
     private View view;
-    private SwipeRefreshLayout swipeRefreshLayout;
-    private RecyclerView mRecyclerView;
-
+    private WebSettings webSettings;
+    private LoadingWebView webView;
+//    private SwipeRefreshLayout swipeRefreshLayout;
+//    private RecyclerView mRecyclerView;
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.em_fragment_workbench, container, false);
+
+        JavaScriptInterface1 myJavaScriptInterface = new JavaScriptInterface1(getActivity());
+        webView = (LoadingWebView) view.findViewById(R.id.aac_webView);
+        webView.setWebViewClient(webClient);
+        webView.addProgressBar();
+        webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true); //设定该WebView可以执行JavaScript程序
+        webSettings.setBuiltInZoomControls(true); //设定该WebView可以缩放
+        webView.addJavascriptInterface(myJavaScriptInterface, "myjs");
+        webView.loadUrl("http://122.13.3.179:870/workbench.html");
+
         return view;
     }
 
+    @SuppressWarnings("unused")
+    public class JavaScriptInterface1 {
+        Context mContext;
+
+        JavaScriptInterface1(Context c) {
+            mContext = c;
+        }
+
+        @JavascriptInterface
+        public void goUrlByApp(String webMessage){
+            Toast.makeText(getActivity(), "goUrlByApp", Toast.LENGTH_SHORT).show();
+        }
+
+        @JavascriptInterface
+        public void isHideLoading(int isHide) { //isHideLoading 1显示，0隐藏；errorMessage提示框
+            Toast.makeText(getActivity(), "isHideLoading", Toast.LENGTH_SHORT).show();
+        }
+
+        @JavascriptInterface
+        public void errorMessage(String msg) {
+            Toast.makeText(getActivity(), "errorMessage", Toast.LENGTH_SHORT).show();
+        }
+
+        @JavascriptInterface
+        public String getUrl() {
+            String url = SharedPreferencesUtil.getInstance().getDataBundle();
+            return url;
+        }
+    }
+
+    // webview客户端对象
+    private WebViewClient webClient = new WebViewClient() {
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+        }
+
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            // 返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
+            view.loadUrl(url);
+            return true;
+        }
+    };
+
     @Override
     protected void initView() {
-        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.efw_swipe);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_list);
-
-        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_red_light, android.R.color.holo_blue_light,
-                android.R.color.holo_green_light);
-//        swipeRefreshLayout.post(new Runnable() {
+//        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.efw_swipe);
+//        mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_list);
+//
+//        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_red_light, android.R.color.holo_blue_light,
+//                android.R.color.holo_green_light);
+////        swipeRefreshLayout.post(new Runnable() {
+////            @Override
+////            public void run() {
+////                swipeRefreshLayout.setRefreshing(true);
+////            }
+////        });
+//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 //            @Override
-//            public void run() {
-//                swipeRefreshLayout.setRefreshing(true);
+//            public void onRefresh() {
+//                swipeRefreshLayout.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        swipeRefreshLayout.setRefreshing(false);
+//                    }
+//                }, 1000);
 //            }
 //        });
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                swipeRefreshLayout.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        swipeRefreshLayout.setRefreshing(false);
-                    }
-                }, 1000);
-            }
-        });
-
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(manager);
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-//        mRecyclerView.addItemDecoration(new SpaceItemDecoration(10));
+//
+//        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+//        manager.setOrientation(LinearLayoutManager.VERTICAL);
+//        mRecyclerView.setLayoutManager(manager);
+//        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+////        mRecyclerView.addItemDecoration(new SpaceItemDecoration(10));
     }
 
     @Override
     protected void setUpView() {
-        List<WorkbenchItem> list = initData();
-
-        WorkbenchItemAdapter adapter = new WorkbenchItemAdapter(getActivity(), list);
-        SlideInBottomAnimationAdapter slideAdapter = new SlideInBottomAnimationAdapter(adapter);
-        slideAdapter.setDuration(800);
-        mRecyclerView.setAdapter(slideAdapter);
-
-        adapter.setOnMyClickListener(new WorkbenchItemAdapter.OnMyClickListener() {
-            @Override
-            public void onClick(View view, int position, String pic) {
-                switch (position) {
-                    case 0:
-                        Intent it0 = new Intent(getActivity(), MacroPlanActivity.class);
-                        startActivity(it0);
-                        break;
-                    case 1:
-                        Intent it1 = new Intent(getActivity(), OutSourcingFactoryManagerActivity.class);
-                        startActivity(it1);
-                        break;
-                    case 2:
-                        Intent it2 = new Intent(getActivity(), RemindNoticeListActivity.class);
-                        startActivity(it2);
-                        break;
-                    case 3:
-                        Intent it3 = new Intent(getActivity(), AllFunctionActivity.class);
-                        startActivity(it3);
-                        break;
-                    case 4:
-                        Intent it4 = new Intent(getActivity(), WorkbenchDetailActivity.class);
-                        it4.putExtra("pic", pic);
-                        startActivity(it4);
-                        break;
-                }
-            }
-        });
-
-        listener();
+//        List<WorkbenchItem> list = initData();
+//
+//        WorkbenchItemAdapter adapter = new WorkbenchItemAdapter(getActivity(), list);
+//        SlideInBottomAnimationAdapter slideAdapter = new SlideInBottomAnimationAdapter(adapter);
+//        slideAdapter.setDuration(800);
+//        mRecyclerView.setAdapter(slideAdapter);
+//
+//        adapter.setOnMyClickListener(new WorkbenchItemAdapter.OnMyClickListener() {
+//            @Override
+//            public void onClick(View view, int position, String pic, String isShow) {
+//                switch (position) {
+//                    case 0:
+//                        Intent it0 = new Intent(getActivity(), MacroPlanActivity.class);
+//                        startActivity(it0);
+//                        break;
+//                    case 1:
+//                        Intent it1 = new Intent(getActivity(), OutSourcingFactoryManagerActivity.class);
+//                        startActivity(it1);
+//                        break;
+//                    case 2:
+//                        Intent it2 = new Intent(getActivity(), RemindNoticeListActivity.class);
+//                        startActivity(it2);
+//                        break;
+//                    case 3:
+//                        Intent it3 = new Intent(getActivity(), AllFunctionActivity.class);
+//                        startActivity(it3);
+//                        break;
+//                    case 4:
+//                        Intent it4 = new Intent(getActivity(), WorkbenchDetailActivity.class);
+//                        it4.putExtra("pic", pic);
+//                        it4.putExtra("isShow", isShow);
+//                        startActivity(it4);
+//                        break;
+//                }
+//            }
+//        });
+//
+//        listener();
     }
 
     /**

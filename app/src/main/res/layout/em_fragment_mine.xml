@@ -45,6 +45,27 @@
                 android:background="#ddd"
                 android:layout_marginTop="20dp"/>
             <com.yiaosi.aps.widget.EditItem
+                android:id="@+id/efm_QRcodeDownload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                myitem:title="扫码下载app"
+                myitem:arrmode="visible"
+                myitem:valueColor="@color/gray_888888"/>
+            <com.yiaosi.aps.widget.EditItem
+                android:id="@+id/efm_QRcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                myitem:title="公司二维码"
+                myitem:arrmode="visible"
+                myitem:valueColor="@color/gray_888888"/>
+            <com.yiaosi.aps.widget.EditItem
+                android:id="@+id/efm_DataBundle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                myitem:title="数据绑定"
+                myitem:arrmode="visible"
+                myitem:valueColor="@color/gray_888888"/>
+            <com.yiaosi.aps.widget.EditItem
                 android:id="@+id/efm_new_msg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

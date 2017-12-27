@@ -37,17 +37,19 @@ public class GroupAdapter extends ArrayAdapter<EMGroup> {
 	private LayoutInflater inflater;
 	private String newGroup;
 	private String addPublicGroup;
+	private String myCompany;
 
 	public GroupAdapter(Context context, int res, List<EMGroup> groups) {
 		super(context, res, groups);
 		this.inflater = LayoutInflater.from(context);
 		newGroup = context.getResources().getString(R.string.The_new_group_chat);
 		addPublicGroup = context.getResources().getString(R.string.add_public_group_chat);
+		myCompany = "我的公司";
 	}
 
 	@Override
 	public int getViewTypeCount() {
-		return 2;
+		return 3;
 	}
 
 	@Override
@@ -61,8 +63,10 @@ public class GroupAdapter extends ArrayAdapter<EMGroup> {
 //		}
 		if (position == 0) {
 			return 0;
-		} else {
+		} else if(position == 1) {
 			return 1;
+		} else {
+			return 2;
 		}
 	}
 
@@ -104,6 +108,14 @@ public class GroupAdapter extends ArrayAdapter<EMGroup> {
 			((ImageView) convertView.findViewById(R.id.avatar)).setImageResource(R.drawable.em_create_group);
 			((TextView) convertView.findViewById(R.id.name)).setText(newGroup);
 			((RelativeLayout) convertView.findViewById(R.id.erag_relativeLayout)).setVisibility(View.VISIBLE);
+		} else if(getItemViewType(position) == 1) {
+			if (convertView == null) {
+				convertView = inflater.inflate(R.layout.em_row_add_group, parent, false);
+			}
+			((ImageView) convertView.findViewById(R.id.avatar)).setImageResource(R.drawable.em_add_public_group);
+			((TextView) convertView.findViewById(R.id.name)).setText(myCompany);
+			((TextView) convertView.findViewById(R.id.header)).setVisibility(View.GONE);
+			((RelativeLayout) convertView.findViewById(R.id.erag_relativeLayout)).setVisibility(View.GONE);
 		}
 //		else if (getItemViewType(position) == 1) {
 //			if (convertView == null) {
@@ -128,7 +140,7 @@ public class GroupAdapter extends ArrayAdapter<EMGroup> {
 
 	@Override
 	public int getCount() {
-		return super.getCount() + 1;
+		return super.getCount() + 2;
 	}
 
 }

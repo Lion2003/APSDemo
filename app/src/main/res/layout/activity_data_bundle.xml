@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:background="@color/status_bar_color"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+    </android.support.design.widget.AppBarLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/mp_10">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="工作台地址："/>
+        <EditText
+            android:id="@+id/adb_dataBundle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入工作台地址"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/eal_btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mp_35"
+        android:layout_margin="@dimen/mp_10"
+        android:background="@drawable/em_button_login_bg"
+        android:gravity="center"
+        android:onClick="login"
+        android:text="保存"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/f_15" />
+
+</LinearLayout>

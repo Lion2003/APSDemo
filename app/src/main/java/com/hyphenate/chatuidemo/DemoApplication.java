@@ -27,6 +27,7 @@ import com.easemob.redpacketsdk.constant.RPConstant;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.utils.EaseUserUtils;
+import com.yiaosi.aps.entity.LoginEntity;
 
 import cn.jpush.android.api.JPushInterface;
 // ============== fabric start
@@ -45,6 +46,8 @@ public class DemoApplication extends Application {
 	 * nickname for current user, the nickname instead of ID be shown when user receive notification from APNs
 	 */
 	public static String currentUserNick = "";
+
+	public static LoginEntity loginEntity;
 
 	@Override
 	public void onCreate() {

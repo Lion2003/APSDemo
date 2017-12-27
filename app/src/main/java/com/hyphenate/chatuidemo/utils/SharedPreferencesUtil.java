@@ -16,6 +16,8 @@ public class SharedPreferencesUtil {
 
     private String USER_HEAD_IMG = "user_head_img";
     private String USER_NAME = "user_name";
+    private String DATA_BUNDLE = "data_bundle";
+    private String TOKEN = "token";
 
     private SharedPreferencesUtil(Context cxt) {
         mSharedPreferences = cxt.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
@@ -59,23 +61,22 @@ public class SharedPreferencesUtil {
         return mSharedPreferences.getString(USER_NAME, "");
     }
 
+    public void setToken(String token) {
+        editor.putString(TOKEN, token);
+        editor.commit();
+    }
 
+    public String getToken(String token) {
+        return mSharedPreferences.getString(TOKEN, "");
+    }
 
+    public void setDataBundle(String bundle) {
+        editor.putString(DATA_BUNDLE, bundle);
+        editor.commit();
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public String getDataBundle() {
+        return mSharedPreferences.getString(DATA_BUNDLE, "http://192.168.11.188:8016");
+    }
 
 }

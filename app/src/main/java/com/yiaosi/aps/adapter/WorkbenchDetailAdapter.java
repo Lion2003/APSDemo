@@ -5,8 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -22,10 +25,12 @@ import java.util.List;
 public class WorkbenchDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private LayoutInflater mLayoutInflater;
+    private String isShow;
 
-    public WorkbenchDetailAdapter(Context context) {
+    public WorkbenchDetailAdapter(Context context, String isShow) {
         this.context = context;
         this.mLayoutInflater = LayoutInflater.from(context);
+        this.isShow = isShow;
     }
 
     @Override
@@ -35,7 +40,14 @@ public class WorkbenchDetailAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        ((Item3ViewHolder)holder).edit.clearFocus();
+        if (isShow.equals("0")) {
 
+        } else if(isShow.equals("1")) {
+            ((Item3ViewHolder)holder).tv.setText("处理结果      已处理");
+            ((Item3ViewHolder)holder).btn.setVisibility(View.GONE);
+            ((Item3ViewHolder)holder).layout.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -44,19 +56,17 @@ public class WorkbenchDetailAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     }
 
     public class Item3ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tv1;
-        private TextView tv2;
-        private TextView tv3;
-        private TextView tv4;
-        private TextView tv5;
+        private TextView tv;
+        private Button btn;
+        private RelativeLayout layout;
+        private EditText edit;
 
         public Item3ViewHolder(View itemView) {
             super(itemView);
-//            tv1 = (TextView) itemView.findViewById(R.id.ewi_1);
-//            tv2 = (TextView) itemView.findViewById(R.id.ewi_2);
-//            tv3 = (TextView) itemView.findViewById(R.id.ewi_3);
-//            tv4 = (TextView) itemView.findViewById(R.id.ewi_4);
-//            tv5 = (TextView) itemView.findViewById(R.id.ewi_5);
+            tv = (TextView) itemView.findViewById(R.id.tv);
+            btn = (Button) itemView.findViewById(R.id.eal_btnLogin);
+            layout = (RelativeLayout) itemView.findViewById(R.id.relativeLayout);
+            edit = (EditText) itemView.findViewById(R.id.ed);
         }
     }
 }

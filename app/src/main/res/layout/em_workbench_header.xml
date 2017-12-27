@@ -18,15 +18,18 @@
         android:background="@drawable/select_white_nornal_gray_press"
         android:paddingTop="@dimen/f_9"
         android:paddingBottom="@dimen/f_9">
+        <!--
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_plan"/>
+            android:src="@drawable/icon_plan"/> -->
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/mp_18"
-            android:text="宏观计划"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/icon_plan"
+            android:drawablePadding="@dimen/mp_18"
+            android:text="  宏观计划  "
+            android:gravity="center_horizontal"
             android:textColor="@color/color_4d4d4d"
             android:textSize="@dimen/f_14"/>
     </LinearLayout>
@@ -48,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/mp_18"
-            android:text="任务提醒"
+            android:text="  任务提醒  "
             android:textColor="@color/color_4d4d4d"
             android:textSize="@dimen/f_14"/>
     </LinearLayout>
@@ -92,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/mp_18"
-            android:text="全部"
+            android:text="     全部     "
             android:textColor="@color/color_4d4d4d"
             android:textSize="@dimen/f_14"/>
     </LinearLayout>

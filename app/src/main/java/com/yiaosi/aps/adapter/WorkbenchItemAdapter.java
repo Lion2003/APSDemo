@@ -36,7 +36,7 @@ public class WorkbenchItemAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     public interface OnMyClickListener {
-        void onClick(View view, int position, String pic);
+        void onClick(View view, int position, String pic, String isShow);
     }
 
     public void setOnMyClickListener(OnMyClickListener onMyClickListener) {
@@ -64,25 +64,25 @@ public class WorkbenchItemAdapter extends RecyclerView.Adapter<RecyclerView.View
             ((HeaderViewHolder)holder).item0.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onMyClickListener.onClick(v, 0, "");
+                    onMyClickListener.onClick(v, 0, "", "-1");
                 }
             });
             ((HeaderViewHolder)holder).item1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onMyClickListener.onClick(v, 1, "");
+                    onMyClickListener.onClick(v, 1, "", "-1");
                 }
             });
             ((HeaderViewHolder)holder).item2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onMyClickListener.onClick(v, 2, "");
+                    onMyClickListener.onClick(v, 2, "", "-1");
                 }
             });
             ((HeaderViewHolder)holder).item3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onMyClickListener.onClick(v, 3, "");
+                    onMyClickListener.onClick(v, 3, "", "-1");
                 }
             });
         } else if( holder instanceof Item1ViewHolder) {
@@ -102,7 +102,7 @@ public class WorkbenchItemAdapter extends RecyclerView.Adapter<RecyclerView.View
             ((Item2ViewHolder)holder).linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onMyClickListener.onClick(v, 4, list.get(position - 2).getPic());
+                    onMyClickListener.onClick(v, 4, list.get(position - 2).getPic(), list.get(position - 2).getIsFinish());
                 }
             });
             ((Item2ViewHolder)holder).customerName.setText("客户名称:" + list.get(position - 2).getCustomerName());

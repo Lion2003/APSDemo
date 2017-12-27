@@ -6,7 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/common_bg">
-
+    <com.yiaosi.aps.widget.LoadingWebView
+        android:id="@+id/aac_webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <!--
     <com.hyphenate.easeui.widget.EaseTitleBar
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
@@ -20,7 +24,7 @@
             android:id="@+id/rv_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </android.support.v4.widget.SwipeRefreshLayout> -->
     <!--
     <ScrollView
         android:orientation="vertical"

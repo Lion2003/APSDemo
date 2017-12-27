@@ -138,6 +138,9 @@ public class GroupListFragment extends Fragment {
                 } else if (position == 1) {
                     // create a new group
                     startActivityForResult(new Intent(getActivity(), NewGroupActivity.class), 0);
+                } else if (position == 2) {
+//                    startActivity();
+                    startActivity(new Intent(getActivity(), CompanyMemberListActivity.class));
                 }
 //                else if (position == 2) {
 //                    // join a public group

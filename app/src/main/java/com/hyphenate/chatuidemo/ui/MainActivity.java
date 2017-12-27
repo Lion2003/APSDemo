@@ -45,7 +45,6 @@ import com.hyphenate.chat.EMCmdMessageBody;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chatuidemo.Constant;
 import com.hyphenate.chatuidemo.DemoHelper;
-import com.hyphenate.easeui.domain.EaseUser;
 import com.yiaosi.aps.R;
 import com.hyphenate.chatuidemo.db.InviteMessgeDao;
 import com.hyphenate.chatuidemo.db.UserDao;
@@ -62,7 +61,6 @@ import com.yiaosi.aps.ui.WorkbenchFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @SuppressLint("NewApi")
 public class MainActivity extends BaseActivity {

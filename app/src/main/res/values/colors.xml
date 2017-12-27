@@ -8,7 +8,10 @@
     <color name="main_bg_color">#f5f6f1</color>
 
     <drawable name="touback">#00000000</drawable>
-
+    <!-- 浅色字体 -->
+    <color name="light_black">#ff999999</color>
+    <!-- 基本红色（提醒数字的背景色） -->
+    <color name="com_red">#ffff3c3e</color>
     <color name="transparent_gray_bg">#33000000</color>
     <color name="gray_dark">#B3B3B3</color>
 

@@ -32,7 +32,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.hyphenate.EMCallBack;
+import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chatuidemo.DemoApplication;
 import com.hyphenate.chatuidemo.DemoHelper;
@@ -41,13 +43,22 @@ import com.hyphenate.exceptions.HyphenateException;
 import com.yiaosi.aps.R;
 import com.hyphenate.chatuidemo.db.DemoDBManager;
 import com.hyphenate.easeui.utils.EaseCommonUtils;
+import com.yiaosi.aps.constant.Constant;
+import com.yiaosi.aps.entity.LoginEntity;
+import com.yiaosi.aps.utils.ACache;
 import com.yiaosi.aps.utils.StringUtil;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import okhttp3.Call;
+import okhttp3.MediaType;
+import okhttp3.Request;
 
 /**
  * Login screen
@@ -64,6 +75,8 @@ public class LoginActivity extends BaseActivity {
 
 	private boolean progressShow;
 	private boolean autoLogin = false;
+
+	private ACache mCache;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -164,12 +177,74 @@ public class LoginActivity extends BaseActivity {
 		}
 	}
 
+	class User {
+		String username;
+		String password;
+
+		public User(String username, String password) {
+			this.username = username;
+			this.password = password;
+		}
+	}
+
+	/**
+	 * 存储登记接口返回的实体类
+	 */
+	private void saveLoginResponseEntity(LoginEntity entity) {
+		mCache = ACache.get(this);
+		mCache.put(com.hyphenate.chatuidemo.Constant.LOGINENTITY, entity);
+	}
+
+	public void login(View view) {
+		OkHttpUtils
+				.postString()
+				.url(Constant.login)
+				.content(new Gson().toJson(new User(usernameEditText.getText().toString(), passwordEditText.getText().toString())))
+//				.addParams("username", usernameEditText.getText().toString())
+//				.addParams("password", passwordEditText.getText().toString())
+				.mediaType(MediaType.parse("application/json; charset=utf-8"))
+				.build()
+				.execute(new LoginCallback());
+	}
+	public class LoginCallback extends StringCallback {
+		@Override
+		public void onBefore(Request request, int id) {
+			Log.e("as", request.toString());
+		}
+
+		@Override
+		public void onAfter(int id) {
+			Log.e("as", id + "");
+		}
+
+		@Override
+		public void onError(Call call, Exception e, int id) {
+			e.printStackTrace();
+		}
+
+		@Override
+		public void onResponse(String response, int id) {
+			Gson gson = new Gson();
+			LoginEntity entity = gson.fromJson(response, LoginEntity.class);
+			if(entity != null && entity.getAuthorization() != null) {
+				DemoApplication.loginEntity = entity;
+				loginIM();
+				saveLoginResponseEntity(entity);
+			} else {
+				Toast.makeText(LoginActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();
+	        }
+        }
+
+		@Override
+		public void inProgress(float progress, long total, int id) {
+//            mProgressBar.setProgress((int) (100 * progress));
+		}
+	}
+
 	/**
 	 * login
-	 * 
-	 * @param view
 	 */
-	public void login(View view) {
+	public void loginIM() {
 		if (!EaseCommonUtils.isNetWorkConnected(this)) {
 			Toast.makeText(this, R.string.network_isnot_available, Toast.LENGTH_SHORT).show();
 			return;
@@ -279,14 +354,64 @@ public class LoginActivity extends BaseActivity {
 				runOnUiThread(new Runnable() {
 					public void run() {
 						pd.dismiss();
-						Toast.makeText(getApplicationContext(), getString(R.string.Login_failed) + message,
-								Toast.LENGTH_SHORT).show();
+//						Toast.makeText(getApplicationContext(), getString(R.string.Login_failed) + message,
+//								Toast.LENGTH_SHORT).show();
+//						if(code == 204) { //这个账号没有注册
+							registerIM();
+//						}
 					}
 				});
 			}
 		});
 	}
 
+	public void registerIM() {
+		if (!TextUtils.isEmpty(usernameEditText.getText().toString().trim()) && !TextUtils.isEmpty(passwordEditText.getText().toString().trim())) {
+			final ProgressDialog pd = new ProgressDialog(this);
+			pd.setMessage(getResources().getString(R.string.Is_the_registered));
+			pd.show();
+
+			new Thread(new Runnable() {
+				public void run() {
+					try {
+						// call method in SDK
+						EMClient.getInstance().createAccount(usernameEditText.getText().toString().trim(), passwordEditText.getText().toString().trim());
+						runOnUiThread(new Runnable() {
+							public void run() {
+								if (!LoginActivity.this.isFinishing())
+									pd.dismiss();
+								// save current user
+								DemoHelper.getInstance().setCurrentUserName(usernameEditText.getText().toString().trim());
+//								Toast.makeText(getApplicationContext(), getResources().getString(R.string.Registered_successfully), Toast.LENGTH_SHORT).show();
+//								finish();
+								loginIM();
+							}
+						});
+					} catch (final HyphenateException e) {
+						runOnUiThread(new Runnable() {
+							public void run() {
+								if (!LoginActivity.this.isFinishing())
+									pd.dismiss();
+								int errorCode=e.getErrorCode();
+								if(errorCode== EMError.NETWORK_ERROR){
+									Toast.makeText(getApplicationContext(), getResources().getString(R.string.network_anomalies), Toast.LENGTH_SHORT).show();
+								}else if(errorCode == EMError.USER_ALREADY_EXIST){
+									Toast.makeText(getApplicationContext(), getResources().getString(R.string.User_already_exists), Toast.LENGTH_SHORT).show();
+								}else if(errorCode == EMError.USER_AUTHENTICATION_FAILED){
+									Toast.makeText(getApplicationContext(), getResources().getString(R.string.registration_failed_without_permission), Toast.LENGTH_SHORT).show();
+								}else if(errorCode == EMError.USER_ILLEGAL_ARGUMENT){
+									Toast.makeText(getApplicationContext(), getResources().getString(R.string.illegal_user_name),Toast.LENGTH_SHORT).show();
+								}else{
+									Toast.makeText(getApplicationContext(), getResources().getString(R.string.Registration_failed), Toast.LENGTH_SHORT).show();
+								}
+							}
+						});
+					}
+				}
+			}).start();
+
+		}
+	}
 	
 	/**
 	 * register

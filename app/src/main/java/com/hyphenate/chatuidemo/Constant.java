@@ -33,6 +33,7 @@ public class Constant extends EaseConstant{
 	public static final String USER_ID = "user_id";
 
 	public static final String AVATAR_NICKNAME_LIST = "avatar_nickname_list"; //记录缓存的头像昵称实体
+	public static final String LOGINENTITY = "loginentity";
 
 	public static final String EXITGROUP = "exit_group"; //退出群
 	public static final String DELETEGROUP = "delete_group"; //删除群

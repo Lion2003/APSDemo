@@ -3,7 +3,6 @@ package com.yiaosi.aps.ui;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,13 +19,15 @@ import com.hyphenate.easeui.ui.EaseBaseFragment;
 import com.yiaosi.aps.R;
 import com.yiaosi.aps.widget.EditItem;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * Created by Administrator on 2017-06-05.
  */
 
 public class MineFragment extends EaseBaseFragment implements View.OnClickListener {
     private View view;
-    private EditItem personInfo, newMsg, checkUpdate, feedBack, helpCenter;
+    private EditItem personInfo, qrCodeDownLoad, qrCode, dataBundle, newMsg, checkUpdate, feedBack, helpCenter;
     private Button logoutBtn;
 
     @Override
@@ -38,6 +39,9 @@ public class MineFragment extends EaseBaseFragment implements View.OnClickListen
     @Override
     protected void initView() {
         personInfo = (EditItem) view.findViewById(R.id.efm_personalInfo);
+        qrCodeDownLoad = (EditItem) view.findViewById(R.id.efm_QRcodeDownload);
+        qrCode = (EditItem) view.findViewById(R.id.efm_QRcode);
+        dataBundle = (EditItem) view.findViewById(R.id.efm_DataBundle);
         newMsg = (EditItem) view.findViewById(R.id.efm_new_msg);
         checkUpdate = (EditItem) view.findViewById(R.id.efm_check_update);
         feedBack = (EditItem) view.findViewById(R.id.efm_feedback);
@@ -49,6 +53,9 @@ public class MineFragment extends EaseBaseFragment implements View.OnClickListen
         }
 
         personInfo.setOnClickListener(this);
+        qrCodeDownLoad.setOnClickListener(this);
+        qrCode.setOnClickListener(this);
+        dataBundle.setOnClickListener(this);
         newMsg.setOnClickListener(this);
         checkUpdate.setOnClickListener(this);
         feedBack.setOnClickListener(this);
@@ -72,6 +79,18 @@ public class MineFragment extends EaseBaseFragment implements View.OnClickListen
             case R.id.btn_logout:
                 logout();
                 break;
+            case R.id.efm_QRcodeDownload:
+                Intent itQRCodeDownload = new Intent(getActivity(), QRCodeDownloadActivity.class);
+                startActivity(itQRCodeDownload);
+                break;
+            case R.id.efm_QRcode:
+                Intent itQRCode = new Intent(getActivity(), QRCodeActivity.class);
+                startActivity(itQRCode);
+                break;
+            case R.id.efm_DataBundle:
+                Intent itBundle = new Intent(getActivity(), DataBundleActivity.class);
+                startActivityForResult(itBundle, 1000);
+                break;
             case R.id.efm_new_msg:
                 Toast.makeText(getActivity(), "正在开发中...", Toast.LENGTH_SHORT).show();
                 break;
@@ -88,6 +107,18 @@ public class MineFragment extends EaseBaseFragment implements View.OnClickListen
 
                 break;
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case 1000:
+                if (resultCode == RESULT_OK) {
+                    logout();
+                }
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     void logout() {
